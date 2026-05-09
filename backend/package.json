@@ -3,7 +3,6 @@
   "version": "5.0.0",
   "description": "Color Delta V5 - Backend API Node.js/Express",
   "main": "src/server.js",
-  "type": "module",
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
