@@ -36,9 +36,9 @@ describe('CCT Build Functions', () => {
           history: []
         }
       ];
-      
+
       const result = buildCCT(sampleTemplate, colors, null);
-      
+
       expect(result).toContain('Cyan');
       expect(result).toContain('ComponentValues');
       // New values should be: rip + derive
@@ -46,7 +46,7 @@ describe('CCT Build Functions', () => {
       // newRip = rip + derive = (50,-20,-30) + (1,1,-1) = (51,-19,-31)
       expect(result).toContain('51 -19 -31');
     });
-    
+
     it('should build CCT with substrate correction', () => {
       const colors = [
         {
@@ -61,16 +61,16 @@ describe('CCT Build Functions', () => {
         }
       ];
       const deltaWP = { L: 1, a: -1, b: 0.5 };
-      
+
       const result = buildCCT(sampleTemplate, colors, deltaWP);
-      
+
       expect(result).toContain('Magenta');
       // Effective scan = scanPrint - deltaWP = (61,81,-9) - (1,-1,0.5) = (60,82,-9.5)
       // derive = nuancier - effectiveScan = (62,82,-8) - (60,82,-9.5) = (2,0,1.5)
       // newRip = rip + derive = (60,80,-10) + (2,0,1.5) = (62,80,-8.5)
       expect(result).toContain('62 80 -8.5');
     });
-    
+
     it('should preserve unchanged colors', () => {
       const colors = [
         {
@@ -84,14 +84,14 @@ describe('CCT Build Functions', () => {
           history: []
         }
       ];
-      
+
       const result = buildCCT(sampleTemplate, colors, null);
-      
+
       // Should keep original values when no derive can be computed
       expect(result).toContain('50 -20 -30');
     });
   });
-  
+
   describe('buildCCTFromSnapshot', () => {
     it('should build CCT from specific snapshot', () => {
       const colors = [
@@ -112,20 +112,20 @@ describe('CCT Build Functions', () => {
           substrateCorrection: false
         }
       ];
-      
+
       const snapshot = {
         colorId: 'c1',
         rip: { L: '48', a: '-22', b: '-28' }
       };
-      
+
       const result = buildCCTFromSnapshot(sampleTemplate, colors, snapshot, null);
-      
+
       // Cyan should use snapshot values
       expect(result).toContain('48 -22 -28');
       // Magenta should use computed values
       expect(result).toContain('61 81 -9');
     });
-    
+
     it('should handle null snapshot', () => {
       const colors = [
         {
@@ -137,9 +137,9 @@ describe('CCT Build Functions', () => {
           substrateCorrection: false
         }
       ];
-      
+
       const result = buildCCTFromSnapshot(sampleTemplate, colors, null, null);
-      
+
       // Should compute normally without snapshot
       expect(result).toContain('51 -19 -31');
     });
