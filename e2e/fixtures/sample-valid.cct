@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ColorTable xmlns="urn:schemas-colorgate-com:colortable" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  ID="ColorCorrection_Test" 
+  Name="Test Color Correction E2E"
+  Description="Fichier test Phase 5 - 5 couleurs primaires"
+  Version="1.0">
+  
+  <ColorEntry Name="Cyan">
+    <ColorOut>
+      <ColorModel>Lab</ColorModel>
+      <ComponentValues>54.2 -37.5 -50.3</ComponentValues>
+    </ColorOut>
+  </ColorEntry>
+  
+  <ColorEntry Name="Magenta">
+    <ColorOut>
+      <ColorModel>Lab</ColorModel>
+      <ComponentValues>48.1 74.8 -3.2</ComponentValues>
+    </ColorOut>
+  </ColorEntry>
+  
+  <ColorEntry Name="Yellow">
+    <ColorOut>
+      <ColorModel>Lab</ColorModel>
+      <ComponentValues>94.5 -6.8 93.7</ComponentValues>
+    </ColorOut>
+  </ColorEntry>
+  
+  <ColorEntry Name="Black">
+    <ColorOut>
+      <ColorModel>Lab</ColorModel>
+      <ComponentValues>16.3 0.4 -1.2</ComponentValues>
+    </ColorOut>
+  </ColorEntry>
+  
+  <ColorEntry Name="White">
+    <ColorOut>
+      <ColorModel>Lab</ColorModel>
+      <ComponentValues>95.8 -0.3 2.1</ComponentValues>
+    </ColorOut>
+  </ColorEntry>
+  
+</ColorTable>

@@ -1,0 +1,49 @@
+# ===== STAGE 1: Builder =====
+FROM node:20-alpine AS builder
+
+LABEL maintainer="NoUseForIt"
+LABEL description="Color Delta V5 - Frontend React"
+
+WORKDIR /app
+
+# Install dependencies
+COPY frontend/package*.json ./
+RUN npm ci && npm cache clean --force
+
+# Copy source
+COPY frontend/ ./
+
+# Build production bundle
+ARG VITE_API_BASE_URL=http://localhost:5000
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+
+RUN npm run build
+
+# ===== STAGE 2: Production =====
+FROM nginx:1.25-alpine
+
+# Copy custom nginx config
+COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copy built assets
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Security: non-root user
+RUN chown -R nginx:nginx /usr/share/nginx/html && \
+    chown -R nginx:nginx /var/cache/nginx && \
+    chown -R nginx:nginx /var/log/nginx && \
+    chown -R nginx:nginx /etc/nginx/conf.d && \
+    touch /var/run/nginx.pid && \
+    chown -R nginx:nginx /var/run/nginx.pid
+
+USER nginx
+
+# Expose port
+EXPOSE 3000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD wget --quiet --tries=1 --spider http://localhost:3000/ || exit 1
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]

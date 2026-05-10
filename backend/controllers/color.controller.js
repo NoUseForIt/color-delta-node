@@ -59,7 +59,7 @@ exports.parseCCT = async (req, res, next) => {
     }));
 
     // Clean up uploaded file
-    await fs.unlink(req.file.path).catch(() => {});
+    await fs.unlink(req.file.path).catch(() => { });
 
     res.json({
       success: true,
@@ -71,7 +71,7 @@ exports.parseCCT = async (req, res, next) => {
   } catch (error) {
     // Clean up file on error
     if (req.file) {
-      await fs.unlink(req.file.path).catch(() => {});
+      await fs.unlink(req.file.path).catch(() => { });
     }
     next(error);
   }

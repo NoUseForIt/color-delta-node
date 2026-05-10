@@ -105,7 +105,7 @@ backend/
 ├── middleware/
 │   ├── upload_middleware.js   # Multer upload
 │   ├── validate_middleware.js # Joi validation
-│   └── error_middleware.js    # Error handler
+│   └── error.middleware.js    # Error handler
 ├── services/                  # Services Phase 2
 │   ├── cctParser_service.js
 │   ├── labCalculations_service.js

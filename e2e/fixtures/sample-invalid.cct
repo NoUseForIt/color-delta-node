@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ColorTable xmlns="urn:schemas-colorgate-com:colortable">
+  <!-- XML malformé volontairement pour test erreur -->
+  <ColorEntry Name="Broken">
+    <ColorOut>
+      <ColorModel>Lab</ColorModel>
+      <!-- Balise ComponentValues non fermée -->
+      <ComponentValues>50.0 25.0 -10.0
+    </ColorOut>
+  </ColorEntry>

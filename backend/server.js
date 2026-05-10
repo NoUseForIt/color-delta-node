@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const apiRoutes = require('./routes/api.routes');
-const errorMiddleware = require('./middleware/error_middleware');
+const errorMiddleware = require('./middleware/error.middleware');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', apiRoutes);
 
 // Error handler global (DOIT être en dernier)
-app.use(errorMiddleware);
+app.use(errorMiddleware.errorHandler);
 
 // Démarrer le serveur
 const server = app.listen(PORT, () => {
