@@ -9,7 +9,7 @@ const path = require('path');
 const app = require('../../server');
 
 describe('API Integration Tests', () => {
-  
+
   // Sample CCT XML for testing
   const validCCT = `<?xml version="1.0" encoding="UTF-8"?>
 <ColorTable xmlns="urn:schemas-colorgate-com:colortable">
@@ -28,7 +28,7 @@ describe('API Integration Tests', () => {
   describe('GET /api/health', () => {
     test('should return health status 200', async () => {
       const res = await request(app).get('/api/health');
-      
+
       expect(res.status).toBe(200);
       expect(res.body).toHaveProperty('status', 'ok');
       expect(res.body).toHaveProperty('version', '5.0.0');
@@ -55,7 +55,7 @@ describe('API Integration Tests', () => {
       expect(res.body.data).toHaveProperty('warnings');
       expect(Array.isArray(res.body.data.colors)).toBe(true);
       expect(res.body.data.colors.length).toBeGreaterThan(0);
-      
+
       // Check color structure
       const color = res.body.data.colors[0];
       expect(color).toHaveProperty('name', 'TestColor');
@@ -128,7 +128,7 @@ describe('API Integration Tests', () => {
       expect(res.status).toBe(200);
       expect(res.body.success).toBe(true);
       expect(res.body.data).toHaveProperty('colors');
-      
+
       const color = res.body.data.colors[0];
       expect(color).toHaveProperty('name', 'TestColor');
       expect(color).toHaveProperty('scanPrintCorrected');
@@ -158,7 +158,7 @@ describe('API Integration Tests', () => {
 
       expect(res.status).toBe(200);
       expect(res.body.success).toBe(true);
-      
+
       const color = res.body.data.colors[0];
       expect(color).toHaveProperty('substrateAlert');
     });

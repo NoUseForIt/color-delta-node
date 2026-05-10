@@ -1,44 +1,28 @@
-/**
- * Color Delta V5 - Express Server
- * Main server configuration and startup
- */
-
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-
 const apiRoutes = require('./routes/api.routes');
-const { errorHandler } = require('./middleware/error.middleware');
+const errorMiddleware = require('./middleware/error_middleware');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
-// Security middleware
+// Middlewares de sécurité et parsing
 app.use(helmet());
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// CORS configuration
-app.use(cors({
-  origin: process.env.CORS_ORIGIN || '*',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type']
-}));
-
-// Body parsers
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-
-// API Routes
+// Routes API
 app.use('/api', apiRoutes);
 
-// Global error handler (must be last)
-app.use(errorHandler);
+// Error handler global (DOIT être en dernier)
+app.use(errorMiddleware);
 
-// Start server (only if not in test mode)
-if (process.env.NODE_ENV !== 'test') {
-  app.listen(PORT, () => {
-    console.log(`🚀 Color Delta V5 API running on port ${PORT}`);
-    console.log(`📍 Health check: http://localhost:${PORT}/api/health`);
-  });
-}
+// Démarrer le serveur
+const server = app.listen(PORT, () => {
+  console.log(`✅ Server running on http://localhost:${PORT}`);
+  console.log(`📡 API available at http://localhost:${PORT}/api`);
+});
 
-module.exports = app;
+module.exports = { app, server };

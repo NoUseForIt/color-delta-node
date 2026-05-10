@@ -1,0 +1,24 @@
+{
+  "name": "color-delta-v5",
+  "version": "5.0.0",
+  "description": "Color Delta V5 - RIP Color Correction Tool",
+  "main": "backend/server.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:unit": "jest backend/tests/services",
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js"
+  },
+  "dependencies": {
+    "@xmldom/xmldom": "^0.9.10"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^30.4.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Uploads temporaires
+uploads/*.cct
+
+# Tests
+coverage/
+
+# Logs
+npm-debug.log*
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Environment
+.env
+.env.local
